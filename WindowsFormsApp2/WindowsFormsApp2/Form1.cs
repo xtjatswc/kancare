@@ -29,5 +29,10 @@ namespace WindowsFormsApp2
         {
             return "3333";
         }
+		
+		private string GetName4()
+        {
+            return "4444444444444";
+        }
     }
 }
