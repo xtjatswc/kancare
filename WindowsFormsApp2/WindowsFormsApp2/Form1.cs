@@ -15,5 +15,10 @@ namespace WindowsFormsApp2
         {
             InitializeComponent();
         }
+
+        private string GetName()
+        {
+            return "zhang";
+        }
     }
 }
