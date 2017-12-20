@@ -20,5 +20,9 @@ namespace WindowsFormsApp2
         {
             return "zhang";
         }
+        private string GetName2()
+        {
+            return "li";
+        }
     }
 }
