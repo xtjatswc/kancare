@@ -1,0 +1,16 @@
+F:\svn\cnis小工具\CNISTools\CNISTools\bin\Debug\CNISTools.exe
+F:\svn\cnis小工具\CNISTools\CNISTools\bin\Debug\CNISTools.pdb
+F:\svn\cnis小工具\CNISTools\CNISTools\bin\Debug\MySql.Data.dll
+F:\svn\cnis小工具\CNISTools\CNISTools\bin\Debug\NPOI.dll
+F:\svn\cnis小工具\CNISTools\CNISTools\bin\Debug\NPOI.xml
+F:\svn\cnis小工具\CNISTools\CNISTools\obj\Debug\CNISTools.csprojResolveAssemblyReference.cache
+F:\svn\cnis小工具\CNISTools\CNISTools\obj\Debug\CNISTools.Form1.resources
+F:\svn\cnis小工具\CNISTools\CNISTools\obj\Debug\CNISTools.Properties.Resources.resources
+F:\svn\cnis小工具\CNISTools\CNISTools\obj\Debug\CNISTools.csproj.GenerateResource.Cache
+F:\svn\cnis小工具\CNISTools\CNISTools\obj\Debug\CNISTools.csproj.CoreCompileInputs.cache
+F:\svn\cnis小工具\CNISTools\CNISTools\obj\Debug\CNISTools.exe
+F:\svn\cnis小工具\CNISTools\CNISTools\obj\Debug\CNISTools.pdb
+F:\svn\cnis小工具\CNISTools\CNISTools\bin\Debug\NPOI.OOXML.dll
+F:\svn\cnis小工具\CNISTools\CNISTools\bin\Debug\NPOI.OpenXml4Net.dll
+F:\svn\cnis小工具\CNISTools\CNISTools\bin\Debug\NPOI.OpenXmlFormats.dll
+F:\svn\cnis小工具\CNISTools\CNISTools\bin\Debug\ICSharpCode.SharpZipLib.dll
