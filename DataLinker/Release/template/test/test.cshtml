@@ -1,0 +1,31 @@
+﻿@using DataLinker;
+@using System.Data;
+@using DBUtility;
+@using Utility;
+
+@{
+    @Model.Razor.Compile("Header", "this is header  \r\n");
+    @Include("Header", Model)
+    
+    XmlConfigUtil xmlUtil = new XmlConfigUtil(Global.XmlDir + "LiteQueryForm.xml");
+    string connStr = xmlUtil.Read("", "LiteQueryForm/mysql");
+    //string connStr = "Data Source=127.0.0.1;Password=cnis;User ID=cnis;DataBase=cnis;Port=3306;CharSet=utf8;convert zero datetime=True";
+    string sql = @"select a.LaboratoryIndexResultNo, a.SentTime, a.TestTime2, b.TestResultNo, b.TestItemCode, b.TestItemName, b.TestItemValue, b.TestItemUnit
+,b.TestItemMaxValue, b.TestItemMinValue,b.IsPositive,b.IsOverMax,b.IsOverMin
+ from laboratoryindex a inner join testresult b on a.LaboratoryIndex_DBKey = b.LaboratoryIndex_DBKey LIMIT 0,300";
+
+    IQueryTool iQueryTool = TFactory.CreateQueryTool(DBTypeEnum.mysql);
+    DataTable dt = iQueryTool.Query(connStr, sql);
+
+    
+    DbHelperMySQL.connectionString = connStr;
+    dt = DbHelperMySQL.Query(sql).Tables[0];
+
+    @(dt.Rows.Count+3);
+    
+    @Model.Name
+    Model.Dgv.DataSource = dt;
+
+    log.Error("error " + dt.Rows.Count, new Exception("发生了一个异常啊"));
+
+}

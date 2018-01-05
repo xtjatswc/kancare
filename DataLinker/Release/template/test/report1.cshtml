@@ -1,0 +1,33 @@
+﻿@using DataLinker;
+@using System.Data;
+@using DBUtility;
+@using Utility;
+@using DataLinker.QueryDesign;
+
+
+@{
+    
+    XmlConfigUtil xmlUtil = new XmlConfigUtil(Global.XmlDir + "LiteQueryForm.xml");
+    string connStr = xmlUtil.Read("", "LiteQueryForm/mysql");
+    string sql = @"select a.LaboratoryIndexResultNo, a.SentTime, a.TestTime2, b.TestResultNo, b.TestItemCode, b.TestItemName, b.TestItemValue, b.TestItemUnit
+,b.TestItemMaxValue, b.TestItemMinValue,b.IsPositive,b.IsOverMax,b.IsOverMin
+ from laboratoryindex a inner join testresult b on a.LaboratoryIndex_DBKey = b.LaboratoryIndex_DBKey LIMIT 0,300";
+
+    //IQueryTool iQueryTool = TFactory.CreateQueryTool(DBTypeEnum.mysql);
+    //DataTable dt = iQueryTool.Query(connStr, sql);
+    
+    DbHelperMySQL.connectionString = connStr;
+    DataTable dt = DbHelperMySQL.Query(sql).Tables[0];
+
+    LiteQueryForm queryForm = new LiteQueryForm(DBTypeEnum.mysql);
+    
+    queryForm.dataGridView1.DataSource = dt;
+    queryForm.txtConnStr.Text = connStr;
+    queryForm.txtConnStr.ReadOnly = true;
+    queryForm.txtSql.Text = sql;
+    queryForm.btnSaveConnStr.Enabled = false;
+    queryForm.btnResetConnStr.Enabled = false;
+    queryForm.btnExcute.Enabled = false;
+    
+    queryForm.ShowDialog();
+}

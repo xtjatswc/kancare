@@ -1,0 +1,45 @@
+﻿@using DataLinker;
+@using System.Data;
+@using DBUtility;
+@using Utility;
+@using DataLinker.QueryDesign;
+
+
+@{
+
+    XmlConfigUtil xmlUtil = new XmlConfigUtil(Global.XmlDir + "LiteQueryForm.xml");
+    string connStr = xmlUtil.Read("", "LiteQueryForm/mysql");
+    string w1 = "2012-10-27";
+    string w2 = "2012-11-15";
+    string sql = @"select * from laboratoryindex where SentTime > '{0}' and TestTime2 >  '{1}'";
+
+    //IQueryTool iQueryTool = TFactory.CreateQueryTool(DBTypeEnum.mysql);
+    //DataTable dt = iQueryTool.Query(connStr, string.Format(sql, w1,w2));
+
+    DbHelperMySQL.connectionString = connStr;
+    DataTable dt = DbHelperMySQL.Query(string.Format(sql, w1, w2)).Tables[0];
+
+    LiteQueryForm queryForm = new LiteQueryForm(DBTypeEnum.mysql);
+
+    queryForm.dataGridView1.DataSource = dt;
+    queryForm.txtConnStr.Text = connStr;
+    queryForm.txtConnStr.ReadOnly = true;
+    queryForm.txtSql.Text = w1 + "###" + w2;
+    queryForm.btnSaveConnStr.Enabled = false;
+    queryForm.btnResetConnStr.Enabled = false;
+    queryForm.btnExcute.Enabled = false;
+
+    queryForm.btnQuery.Click -= new System.EventHandler(queryForm.btnQuery_Click);
+    queryForm.btnQuery.Click += new System.EventHandler(delegate(object sender,EventArgs e)
+    {
+        //System.Windows.Forms.MessageBox.Show("ok");
+
+        string[] str = queryForm.txtSql.Text.Split(new string[] { "###" }, StringSplitOptions.None);
+        w1 = str[0];
+        w2 = str[1];
+        dt = DbHelperMySQL.Query(string.Format(sql, w1, w2)).Tables[0];
+        queryForm.dataGridView1.DataSource = dt;
+    });
+
+    queryForm.ShowDialog();
+}

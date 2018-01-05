@@ -1,0 +1,11 @@
+E:\svn\数据适配器\code\DataLinker\Release\DataLinker.exe.config
+E:\svn\数据适配器\code\DataLinker\Release\DataLinker.exe
+E:\svn\数据适配器\code\DataLinker\Release\DataLinker.pdb
+E:\svn\数据适配器\code\DataLinker\DataLinker\obj\Release\DataLinker.csprojResolveAssemblyReference.cache
+E:\svn\数据适配器\code\DataLinker\DataLinker\obj\Release\DataLinker.QueryDesign.LiteQueryForm.resources
+E:\svn\数据适配器\code\DataLinker\DataLinker\obj\Release\DataLinker.Properties.Resources.resources
+E:\svn\数据适配器\code\DataLinker\DataLinker\obj\Release\DataLinker.QueryDesign.QueryMdiForm.resources
+E:\svn\数据适配器\code\DataLinker\DataLinker\obj\Release\DataLinker.Razor.Form1.resources
+E:\svn\数据适配器\code\DataLinker\DataLinker\obj\Release\DataLinker.csproj.GenerateResource.Cache
+E:\svn\数据适配器\code\DataLinker\DataLinker\obj\Release\DataLinker.exe
+E:\svn\数据适配器\code\DataLinker\DataLinker\obj\Release\DataLinker.pdb

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBUtility", "DBUtility\DBUtility.csproj", "{8A05CB1F-56A3-4DFE-9502-882A393DCDBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{DADBD34B-70E1-4420-AE17-CB9F7F4826B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLinker", "DataLinker\DataLinker.csproj", "{3C2A67C5-6419-43B5-8610-8461102E6577}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A05CB1F-56A3-4DFE-9502-882A393DCDBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A05CB1F-56A3-4DFE-9502-882A393DCDBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A05CB1F-56A3-4DFE-9502-882A393DCDBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A05CB1F-56A3-4DFE-9502-882A393DCDBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DADBD34B-70E1-4420-AE17-CB9F7F4826B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DADBD34B-70E1-4420-AE17-CB9F7F4826B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DADBD34B-70E1-4420-AE17-CB9F7F4826B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DADBD34B-70E1-4420-AE17-CB9F7F4826B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C2A67C5-6419-43B5-8610-8461102E6577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C2A67C5-6419-43B5-8610-8461102E6577}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C2A67C5-6419-43B5-8610-8461102E6577}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C2A67C5-6419-43B5-8610-8461102E6577}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

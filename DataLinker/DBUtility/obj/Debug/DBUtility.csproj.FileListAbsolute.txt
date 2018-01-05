@@ -1,0 +1,4 @@
+E:\svn\数据适配器\code\DataLinker\bin\DBUtility.dll
+E:\svn\数据适配器\code\DataLinker\bin\DBUtility.pdb
+E:\svn\数据适配器\code\DataLinker\DBUtility\obj\Debug\DBUtility.dll
+E:\svn\数据适配器\code\DataLinker\DBUtility\obj\Debug\DBUtility.pdb

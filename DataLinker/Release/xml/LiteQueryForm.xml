@@ -1,0 +1,7 @@
+<XmlConfig>
+  <LiteQueryForm>
+    <Oracle>Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=172.16.1.6)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl)));Persist Security Info=True;User ID=system;Password=orcl;</Oracle>
+    <sqlserver>Data Source = 127.0.0.1;Initial Catalog = cnis;User Id = sa;Password = sa;</sqlserver>
+    <mysql>Data Source=127.0.0.1;Password=cnis;User ID=cnis;DataBase=cnis;Port=3306;CharSet=utf8;convert zero datetime=True</mysql>
+  </LiteQueryForm>
+</XmlConfig>

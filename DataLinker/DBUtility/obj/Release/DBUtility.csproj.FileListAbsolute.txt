@@ -1,0 +1,5 @@
+E:\svn\数据适配器\code\DataLinker\Release\DBUtility.dll
+E:\svn\数据适配器\code\DataLinker\Release\DBUtility.pdb
+E:\svn\数据适配器\code\DataLinker\DBUtility\obj\Release\DBUtility.csprojResolveAssemblyReference.cache
+E:\svn\数据适配器\code\DataLinker\DBUtility\obj\Release\DBUtility.dll
+E:\svn\数据适配器\code\DataLinker\DBUtility\obj\Release\DBUtility.pdb

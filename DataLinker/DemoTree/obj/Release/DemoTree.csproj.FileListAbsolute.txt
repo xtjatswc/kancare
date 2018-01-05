@@ -1,0 +1,9 @@
+E:\work\svn\webSVN\trunk\数据适配器\code\DataLinker\Release\DemoTree.exe.config
+E:\work\svn\webSVN\trunk\数据适配器\code\DataLinker\Release\DemoTree.exe
+E:\work\svn\webSVN\trunk\数据适配器\code\DataLinker\Release\DemoTree.pdb
+E:\work\svn\webSVN\trunk\数据适配器\code\DataLinker\DemoTree\obj\Release\DemoTree.csprojResolveAssemblyReference.cache
+E:\work\svn\webSVN\trunk\数据适配器\code\DataLinker\DemoTree\obj\Release\DemoTree.DemoTreeForm.resources
+E:\work\svn\webSVN\trunk\数据适配器\code\DataLinker\DemoTree\obj\Release\DemoTree.Properties.Resources.resources
+E:\work\svn\webSVN\trunk\数据适配器\code\DataLinker\DemoTree\obj\Release\DemoTree.csproj.GenerateResource.Cache
+E:\work\svn\webSVN\trunk\数据适配器\code\DataLinker\DemoTree\obj\Release\DemoTree.exe
+E:\work\svn\webSVN\trunk\数据适配器\code\DataLinker\DemoTree\obj\Release\DemoTree.pdb
