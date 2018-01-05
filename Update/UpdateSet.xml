@@ -13,7 +13,7 @@
   <!--文件列表（必须）-->
   <filelist sourcepath="https://raw.githubusercontent.com/xtjatswc/kancare/master/Update/">
     <item name="KcPay.exe" date="2017-12-11" />
-    <item name="新建文本文档.txt" date="2017-12-19" />
+    <item name="新建文本文档.txt" date="2017-12-20" />
   </filelist>
   <updateInfo>
 	1.修正了BUG
