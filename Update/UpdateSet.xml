@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Soft>
+  <!--服务器更新配置文件的url地址（必须）-->
+  <UpdateURL>http://172.16.1.3/KcPay/UpdateSet.xml</UpdateURL>
+  <!--当前程序名字（必须，无须后缀名）-->
+  <AppName>KcPay</AppName>
+  <!--更新程序名-->
+  <updateName>UpdateApp</updateName>
+  <!--更新的文件临时保存路径（可空）-->
+  <TempFile>tempFile</TempFile>
+  <!--版本-->
+  <ver>v1.1.3</ver>
+  <!--文件列表（必须）-->
+  <filelist sourcepath="http://172.16.1.3/KcPay/">
+    <item name="KcPay.exe" date="2017-12-12" />
+    <item name="zh-CHS/Microsoft.ReportViewer.Common.resources.dll" date="2017-12-12" />
+  </filelist>
+  <updateInfo>
+	1.修正了BUG
+	2.增加了功能
+  </updateInfo>
+</Soft>
