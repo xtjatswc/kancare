@@ -1,0 +1,85 @@
+--问卷导出
+select e.id, e.RecordTime,d.QuestionNo, d.QuestionName,c.OptionName,b.OptionValue from [dbo].[QuestionRecordDetail] b
+inner join [Question] d  on d.ID = b.QuestionID
+inner join [dbo].[QuestionRecord] e on e.id = b.QuestionRecordID 
+inner join [dbo].[QuestionOption] c on b.QuestionOptionID = c.id
+where d.QuestionnaireID = 1
+order by e.id,d.SortNo,c.SortNo
+
+--按地区统计
+select  OptionValue, count(*) from 
+(
+select e.id, e.RecordTime,d.QuestionNo, d.QuestionName,c.OptionName,b.OptionValue from [dbo].[QuestionRecordDetail] b
+inner join [Question] d  on d.ID = b.QuestionID
+inner join [dbo].[QuestionRecord] e on e.id = b.QuestionRecordID 
+inner join [dbo].[QuestionOption] c on b.QuestionOptionID = c.id
+where d.QuestionnaireID = 1 and QuestionName in ('市')
+) tb group by OptionValue
+
+
+--查省市
+ select distinct tb.OptionValue v1, tb1.OptionValue v2 from 
+ (
+ select e.id, e.RecordTime,d.QuestionNo, d.QuestionName,c.OptionName,b.OptionValue from [dbo].[QuestionRecordDetail] b
+inner join [Question] d  on d.ID = b.QuestionID
+inner join [dbo].[QuestionRecord] e on e.id = b.QuestionRecordID 
+inner join [dbo].[QuestionOption] c on b.QuestionOptionID = c.id
+where d.QuestionnaireID = 1 and  d.QuestionName in ('市')
+) tb
+inner join 
+ (
+ select e.id, e.RecordTime,d.QuestionNo, d.QuestionName,c.OptionName,b.OptionValue from [dbo].[QuestionRecordDetail] b
+inner join [Question] d  on d.ID = b.QuestionID
+inner join [dbo].[QuestionRecord] e on e.id = b.QuestionRecordID 
+inner join [dbo].[QuestionOption] c on b.QuestionOptionID = c.id
+where d.QuestionnaireID = 1 and  d.QuestionName in ('省')
+) tb1 on tb.id = tb1.id
+
+
+
+--更新省、市
+  update QuestionRecord
+  set City = b.OptionValue
+  from
+  QuestionRecord e 
+  inner join
+  [dbo].[QuestionRecordDetail] b on e.id = b.QuestionRecordID 
+inner join [Question] d  on d.ID = b.QuestionID
+inner join [dbo].[QuestionOption] c on b.QuestionOptionID = c.id
+where d.QuestionnaireID = 1 and d.QuestionName = '市' and City is null
+
+
+  update QuestionRecord
+  set Province = b.OptionValue
+  from
+  QuestionRecord e 
+  inner join
+  [dbo].[QuestionRecordDetail] b on e.id = b.QuestionRecordID 
+inner join [Question] d  on d.ID = b.QuestionID
+inner join [dbo].[QuestionOption] c on b.QuestionOptionID = c.id
+where d.QuestionnaireID = 1 and d.QuestionName = '省'  and Province is null
+
+update QuestionRecord set [Province] = b.[ProvinceReal]
+from QuestionRecord a inner join [dbo].[Province] b
+on a.[Province] = b.[ProvinceAlias]
+where a.[Province] != b.[ProvinceReal]
+
+update QuestionRecord set [City] = b.[CityReal]
+from QuestionRecord a inner join [dbo].[City] b
+on a.[City] = b.[CityAlias]
+where a.[City] != b.[CityReal]
+
+update QuestionRecord set [HospitalLevel] = b.OptionName
+from [dbo].[QuestionRecord] a
+inner join
+(
+select e.id, e.RecordTime,d.QuestionNo, d.QuestionName,c.OptionName,b.OptionValue from [dbo].[QuestionRecordDetail] b
+inner join [Question] d  on d.ID = b.QuestionID
+inner join [dbo].[QuestionRecord] e on e.id = b.QuestionRecordID 
+inner join [dbo].[QuestionOption] c on b.QuestionOptionID = c.id
+where d.QuestionnaireID = 1 and d.QuestionName = '贵院等级'
+) b on a.id = b.id
+where a.[HospitalLevel] is null
+
+--生成随机数
+update [dbo].[ProvinceCode] set code = substring(LTrim(abs(checksum(newid()))),0,6)
