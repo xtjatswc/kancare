@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FastQues.Models.QuestionRecordDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionRecordID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionnaireID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionOptionID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OptionValue)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionRecordID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionnaireID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionOptionID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OptionValue)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

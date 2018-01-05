@@ -1,0 +1,72 @@
+﻿@model FastQues.Models.QuestionRecord
+
+@{
+    Layout = null;
+    var questionnaire = (Questionnaire)ViewBag.questionnaire;
+    var optionDict = (Dictionary<int, List<QuestionOption>>)ViewBag.optionDict;
+    var detailDict = (Dictionary<int?, List<QuestionRecordDetail>>)ViewBag.detailDict;
+    var questionList = (List<Question>)ViewBag.questionList;
+
+    ViewBag.Title = questionnaire.QuestionnaireName;
+    ViewBag.Source = questionnaire.Source;
+}
+
+<h2>@questionnaire.QuestionnaireName</h2>
+
+<div>
+    <h4>@Html.DisplayNameFor(model => model.RecordTime)：@Model.RecordTime</h4>
+    <hr />
+
+    @foreach (var question in questionList)
+    {
+        if (question.QuestionType == 5)
+        {
+            <hr />
+        }
+		if(question.QuestionType != 4 && question.QuestionType != 6)
+		{
+	        <div>
+	            @question.QuestionNo
+	            <label>.</label>
+	            @question.QuestionName
+	        </div>
+        }
+        
+        if (detailDict.ContainsKey(question.ID))
+        {
+            var details = detailDict[question.ID];
+            foreach (var detail in details)
+            {
+                if (optionDict.ContainsKey(detail.QuestionOptionID))
+                {
+                    var option = optionDict[detail.QuestionOptionID].First();
+
+                    <label style="color:blue">
+                        &nbsp;&nbsp;
+                        @if (option.OptionType == 1 && !string.IsNullOrEmpty(detail.OptionValue))
+                        {
+                            @detail.OptionValue;
+                        }
+                        else
+                        {
+                            @option.OptionName;
+                        }
+                    </label>
+                    <br />
+                }
+            }
+        }
+        <br />
+
+    }
+
+
+</div>
+
+
+
+
+
+<p>
+    @Html.ActionLink("Back to List", "Index", new { ID = @questionnaire.ID})
+</p>

@@ -1,0 +1,58 @@
+﻿@model FastQues.Models.QuestionRecordDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QuestionRecordDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionRecordID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionRecordID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionnaireID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionnaireID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionOptionID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionOptionID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OptionValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OptionValue)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

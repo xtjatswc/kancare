@@ -1,0 +1,50 @@
+﻿@model IEnumerable<System.Data.DataRow>
+
+@{
+
+    var questionnaire = (Questionnaire)ViewBag.questionnaire;
+
+    ViewBag.Title = questionnaire.QuestionnaireName;
+    ViewBag.Source = questionnaire.Source;
+}
+
+<h2>
+    <div class="divTitle">
+        @questionnaire.QuestionnaireName
+    </div>
+</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            省
+        </th>
+        <th>
+            答卷数量
+        </th>
+        <th>
+           问卷管理
+        </th>
+        <th style="display:none">
+            导出Excel
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item["Province"])
+        </td>
+        <td>
+            @item["Cc"]
+        </td>
+        <td>
+            <a href="../../QuestionRecords/Home/@questionnaire.ID/@item["Code"]" target="_blank">http://question.kancare.cn:8082/QuestionRecords/Home/@questionnaire.ID/@item["Code"]</a>
+        </td>
+        <td style="display:none">
+            <a href="../../QuestionRecords/Excel2/@questionnaire.ID/@item["Code"]" target="_blank">导出</a>
+        </td>
+    </tr>
+}
+
+</table>

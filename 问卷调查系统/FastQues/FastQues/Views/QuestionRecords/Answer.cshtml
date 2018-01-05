@@ -1,0 +1,277 @@
+﻿@model IEnumerable<FastQues.Models.Question>
+
+@{
+    Layout = null;
+
+    var optionDict = (Dictionary<int?, List<QuestionOption>>)ViewBag.optionDict;
+    var questionnaire = (Questionnaire)ViewBag.questionnaire;
+
+    ViewBag.Title = "Index";
+    ViewBag.Source = questionnaire.Source;
+}
+<html>
+<head>
+    @Styles.Render("~/Content/question.css")
+    <meta name="viewport" content="initial-scale=1, user-scalable=0, minimal-ui">
+</head>
+<body>
+
+    <div class="divTitle">
+        @questionnaire.QuestionnaireName
+    </div>
+    <hr style="height:3px;border:none;border-top:2px solid  #e33b3d;" />
+    <form id="formAnswer" action="" method="post">
+        @foreach (var item in Model)
+        {
+            if (item.QuestionType == 6)
+            {
+                <img src="@item.QuestionName" width="@item.QuestionDescription" />
+                continue;
+            }
+
+            <div class="divQuestion">
+                @{
+                    var headerCss = "divQuestionHeader";
+                    if (item.QuestionType == 4 || item.QuestionType == 5)
+                    {
+                        headerCss = "divQuestionHeader2";
+                    }
+                }
+                <div class="@headerCss">
+                    <span>@Html.DisplayFor(modelItem => item.QuestionNo)</span>&nbsp; @Html.DisplayFor(modelItem => item.QuestionName)&nbsp;
+
+                    @if (item.IsNotNull == 1)
+                {
+                    if (item.QuestionType == 3)
+                    {
+                            <span class="asterisk">(必填)</span>
+                        }
+                        else
+                        {
+                            <span class="asterisk">(必选)</span>
+                        }
+                    }
+                </div>
+
+                @if (item.QuestionType != 5)
+                {
+                    @*题目类型：1、单选题，2、多选题、3、文本框、4、文本描述、5、Section、6、图片*@
+
+                if (item.QuestionType == 4)
+                {
+                    <div class="text-option">
+                        @Html.Raw(item.QuestionDescription)
+                    </div>
+                }
+                else if (item.QuestionType == 3)
+                {
+                    if (optionDict.ContainsKey(item.ID))
+                    {
+                        var option = optionDict[item.ID].First();
+                        <input id="text_@option.ID" name="text_@option.ID" class="text-option" type="text" questionid="@item.ID" QuestionOptionID="@option.ID" /><label for="text_@option.ID" class="answertext">@Html.DisplayFor(modelItem => option.OptionName)</label>
+                    }
+                }
+                else
+                {
+                    <ul class="answers-list radio-list">
+                        @if (optionDict.ContainsKey(item.ID))
+                        {
+                            foreach (var option in optionDict[item.ID])
+                            {
+                                if (item.QuestionType == 1)
+                                {
+                                    <li class="answer-item radio-item"><input id="radio_@option.ID" questionid="@item.ID" name="radio_group_@Html.DisplayFor(modelItem => item.ID)" type="radio" value="@Html.DisplayFor(modelItem => option.ID)"><label for="radio_@option.ID" class="answertext">@Html.DisplayFor(modelItem => option.OptionName)</label></li>
+                                }
+                                if (item.QuestionType == 2)
+                                {
+                                    <li class="answer-item">
+                                        <input id="check_@option.ID" questionid="@item.ID" name="check_group_@item.ID" type="checkbox" value="@option.ID" /> <label for="check_@option.ID" class="answertext">@Html.DisplayFor(modelItem => option.OptionName)</label>
+                                        @if (option.OptionType == 1)
+                                    {
+                                            <input id="text_@option.ID" type="text" questionid="@item.ID" QuestionOptionID="@option.ID" />
+                                        }
+                                    </li>
+                                }
+                            }
+                        }
+                    </ul>
+                    }
+
+                }
+
+            </div>
+                    }
+    </form>
+    <div class="divQuestion" style="background:#eefaff;text-align:center;padding:8px;">
+        <button id="btnSubmit" type="button" class="quesBtn">提交</button>
+    </div>
+    <p>&copy; @DateTime.Now.Year - @ViewBag.Source</p>
+    <script>
+        var const_QuestionnaireID = @questionnaire.ID;
+        var const_StatusFlags = "@ViewBag.StatusFlags";
+    </script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/custom/question.js")
+
+    <script>
+
+
+            //表单验证
+            $(function () {
+                //让当前表单调用validate方法，实现表单验证功能
+                $("#formAnswer").validate({
+                    debug: true, //调试模式，即使验证成功也不会跳转到目标页面
+                    rules: {     //配置验证规则，key就是被验证的dom对象，value就是调用验证的方法(也是json格式)
+                        //text_155: {
+                        //    required: true,  //必填。如果验证方法不需要参数，则配置为true
+                        //    rangelength: [4, 30]
+                        //},
+                        //text_266: {
+                        //    required: true,
+                        //    rangelength: [2, 10]
+                        //},
+                        //text_267: {
+                        //    required: true,
+                        //    rangelength: [2, 15]
+                        //},
+                        //text_156: {
+                        //    required: true,
+                        //    rangelength: [11, 11]
+                        //},
+                        //text_157: {
+                        //    required: true,
+                        //    email: true
+                        //},
+                        radio_group_1: {
+                            required: true,
+                        },
+                        check_group_45: {
+                            required: true,
+                        },
+                        @foreach (var item in Model)
+                        {
+                            if (item.IsNotNull == 1)
+                            {
+
+                                <text>//@item.QuestionName</text>
+                                if(item.QuestionType == 1)
+                                {
+                                   <text>radio_group_@item.ID:</text>
+                                }
+                                else if(item.QuestionType == 2)
+                                {
+                                   <text>check_group_@item.ID:</text>
+                                }
+                                else if(item.QuestionType == 3)
+                                {
+                                    var option = optionDict[item.ID].First();
+                                   <text>text_@option.ID:</text>
+                                }
+
+                                if(item.QuestionType != 4 && item.QuestionType != 5 && item.QuestionType != 6)
+                                {
+                                    <text>
+                                    {
+                                        required: true,
+                                        @if (item.RangeLength != null)
+                                        {
+                                          <text>rangelength: [@item.RangeLength], </text>
+                                        }
+                                        @if (item.IsEmailValid == 1)
+                                        {
+                                          <text>email: true,</text>
+                                        }
+                                    },
+                                    </text>
+                                }
+                            }
+                        }
+                     },
+                    messages: {
+                        //text_155: {
+                        //    required: "请输入您所在医院的名称",
+                        //    rangelength: $.validator.format("医院的名称长度必须在：{0}-{1}之间")
+                        //},
+                        //text_266: {
+                        //    required: "请输入您所在省的名称",
+                        //    rangelength: $.validator.format("省的名称长度必须在：{0}-{1}之间")
+                        //},
+                        //text_267: {
+                        //    required: "请输入您所在市的名称",
+                        //    rangelength: $.validator.format("市的名称长度必须在：{0}-{1}之间")
+                        //},
+                        //text_156: {
+                        //    required: "请输入您的手机号",
+                        //    rangelength: $.validator.format("手机号的长度必须为11位")
+                        //},
+                        //text_157: {
+                        //    required: "请输入您的E-mail",
+                        //    email: "邮箱格式不正确"
+                        //},
+                        //radio_group_1: {
+                        //    required: "该题为必填项",
+                        //},
+                        //check_group_45: {
+                        //    required: "该题为必填项",
+                        //},
+                        @foreach (var item in Model)
+                        {
+                            if (item.IsNotNull == 1)
+                            {
+
+                                <text>//@item.QuestionName</text>
+                                if(item.QuestionType == 1)
+                                {
+                                   <text>radio_group_@item.ID:</text>
+                                }
+                                else if(item.QuestionType == 2)
+                                {
+                                   <text>check_group_@item.ID:</text>
+                                }
+                                else if(item.QuestionType == 3)
+                                {
+                                    var option = optionDict[item.ID].First();
+                                   <text>text_@option.ID:</text>
+                                }
+
+                                if(item.QuestionType != 4 && item.QuestionType != 5 && item.QuestionType != 6)
+                                {
+                                    <text>
+                                    {
+                                        @if (item.RequiredMsg != null)
+                                        {
+                                            <text>required: "@item.RequiredMsg",</text>
+                                        }
+                                        else
+                                        {
+                                            <text>required: "该项为必填项",</text>
+                                        }
+                                        @if (item.RangeLength != null)
+                                        {
+                                          <text>rangelength: $.validator.format("@item.RangeLengthMsg"),</text>
+                                        }
+                                        @if (item.IsEmailValid == 1)
+                                        {
+                                          <text>email: "邮箱格式不正确",</text>
+                                        }
+
+                                    },
+                                    </text>
+                                }
+                            }
+                        }
+                    },
+                    errorPlacement: function (error, element) { //指定错误信息位置
+                        if (element.is(':radio') || element.is(':checkbox')) { //如果是radio或checkbox
+                            var eid = element.attr('name'); //获取元素的name属性
+                            error.insertBefore(element.parent().parent()); //将错误信息添加当前元素的父结点后面
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    }
+                });
+            });
+    </script>
+</body>
+</html>
